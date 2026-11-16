@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "digit360-robotlearning-benchmarking"
+version = "0.1.0"
+description = "BESO policy (extracted from lerobot) and benchmarking utilities for Digit-360 tactile robot learning."
+requires-python = ">=3.10"
+dependencies = [
+    "torch",
+    "torchvision",
+    "numpy",
+    "einops",
+    "tqdm",
+    "transformers",
+    "huggingface_hub",
+]
+
+[project.scripts]
+digit260-deploy = "deploy:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["policy*", "robot_description*"]
+
+[tool.setuptools.package-data]
+robot_description = ["*.yaml"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["deploy"]

@@ -1,0 +1,4 @@
+sensor_msgs/Image image
+---
+bool in_contact
+float32 confidence

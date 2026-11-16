@@ -1,0 +1,8 @@
+{
+        "": {"log-base": "/home/devuser/lasr_grasp_ws/log"},
+        "build": { "base-paths": ["/home/devuser/lasr_grasp_ws/src"],
+            "build-base": "/home/devuser/lasr_grasp_ws/build",
+            "install-base": "/home/devuser/lasr_grasp_ws/install",
+            "symlink-install": true,
+        }
+}

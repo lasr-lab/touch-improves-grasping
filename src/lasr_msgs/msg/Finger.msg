@@ -1,0 +1,6 @@
+std_msgs/Header header
+
+float32 finger_tip
+float32 finger_first_joint
+float32 finger_base_joint
+float32 finger_base_rot

@@ -1,0 +1,9 @@
+[submodule "src/DynamixelSDK"]
+	path = src/DynamixelSDK
+	url = https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+[submodule "src/ROS-TCP-Endpoint"]
+	path = src/ROS-TCP-Endpoint
+	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
+[submodule "src/realsense-ros"]
+	path = src/realsense-ros
+	url = https://github.com/realsenseai/realsense-ros.git

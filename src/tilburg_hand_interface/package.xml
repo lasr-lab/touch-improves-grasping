@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>tilburg_hand_interface</name>
+  <version>0.1.0</version>
+  <description>OS2 interface wrapping the Tilburg Hand Python library.</description>
+  <maintainer email="contact@tilburg-robotics.eu">Tilburg Robotics</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  
+  <build_depend>dynamixel_sdk</build_depend>
+  <exec_depend>dynamixel_sdk</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

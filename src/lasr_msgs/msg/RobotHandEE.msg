@@ -1,0 +1,7 @@
+std_msgs/Header header
+
+bool left_hand
+geometry_msgs/Vector3 thumb
+geometry_msgs/Vector3 index_finger
+geometry_msgs/Vector3 middle_finger
+geometry_msgs/Vector3 ring_finger

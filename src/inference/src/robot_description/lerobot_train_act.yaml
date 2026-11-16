@@ -1,0 +1,56 @@
+output_dir: "out_slower/act/"
+steps: 16000
+batch_size: 4
+eval_freq: 100
+log_freq: 100
+save_checkpoint: true
+save_freq: 1000
+num_workers: 6
+
+dataset:
+  repo_id: "test"
+  root: "/home/niklas/datasets/mock_50_lerobot/"
+  video_backend: "torchcodec"
+  image_transforms:
+    enable: true
+    max_num_transforms: 1
+    random_order: true
+    tfs:
+      # REMOVED: affine (Saves massive CPU)
+      # REMOVED: sharpness (Saves CPU)
+      custom:
+        type: ColorJitter
+        weight: 1.0
+        kwargs:
+          brightness: [0.9, 1.1]
+          contrast: [0.9, 1.1]
+   
+policy:
+  type: "act"
+  push_to_hub: false
+  device: "cuda"
+
+  normalization_mapping:
+    VISUAL: "IDENTITY"
+    STATE: "MEAN_STD"
+    ACTION: "MIN_MAX"
+
+# Temporal & Chunking Behavior
+  n_obs_steps: 1
+  chunk_size: 30
+  n_action_steps: 4
+
+  # VAE Regularization
+  kl_weight: 10.0
+
+  # Architecture 
+  dim_model: 1024         # bandwidth of the network
+  n_heads: 8             # attention heads observing x different relationships
+  dim_feedforward: 3200  # size of Multi-Layer Perceptron
+  optimizer_lr: 1.0e-5
+  optimizer_weight_decay: 1.0e-4
+
+wandb:
+  enable: True
+  mode: "offline"
+  project: "lerobot"

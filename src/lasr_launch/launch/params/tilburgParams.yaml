@@ -1,0 +1,5 @@
+tilburg_hand_interface:
+  ros__parameters:
+    side: "right"
+    usb-port: "/dev/ttyUSB0"
+    joints-post-rate: 50

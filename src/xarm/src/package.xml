@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>xarm</name>
+  <description>Scripts and launch files for xArm movements</description>
+  <version>0.0.1</version>
+  <license>MIT</license>
+  <maintainer email="nleukroth@lasr.org">Niklas Leukroth</maintainer>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>lasr_msgs</exec_depend>
+  <exec_depend>xarm_msgs</exec_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
