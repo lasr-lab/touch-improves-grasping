@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch Improves Learning Dexterous Grasping from Demonstration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .authors {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .authors a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted white;
+        }
+
+        .authors a:hover {
+            border-bottom: 1px solid white;
+        }
+
+        .affiliations {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid white;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn.disabled:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Main content */
+        main {
+            padding: 40px 0;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        /* Abstract */
+        .abstract {
+            font-size: 1.1rem;
+            text-align: justify;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        /* Video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Images */
+        .figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption {
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
+        /* Results grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .results-grid.side-by-side {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .results-item {
+            text-align: center;
+        }
+
+        /* Full-width figure */
+        .full-width-figure {
+            margin: 40px 0;
+        }
+
+        /* BibTeX */
+        .bibtex {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* Footer */
+        footer {
+            background: #f8f9fa;
+            padding: 30px 0;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .abstract {
+                font-size: 1rem;
+                padding: 20px;
+            }
+
+            .authors {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Touch Improves Learning Dexterous Grasping from Demonstration</h1>
+
+            <div class="authors">
+                <span>Niklas Leukroth*</span><sup>1</sup>,
+                <span>Pankhuri Vanjani*</span><sup>2</sup>,
+                <span>Jakub Suliga</span><sup>2</sup>,
+                <span>Ken Nakahara</span><sup>1</sup>,
+                <span>Rudolf Lioutikov</span><sup>2</sup>,
+                <span>Roberto Calandra</span><sup>1</sup>
+            </div>
+
+            <div class="affiliations">
+                <sup>*</sup>Equal contribution<br>
+                <sup>1</sup>Dresden University of Technology, Germany<br>
+                <sup>2</sup>Karlsruhe Institute of Technology, Germany
+            </div>
+
+            <div class="links">
+                <a href="#" class="btn disabled" onclick="return false;">Paper (Coming Soon)</a>
+                <a href="https://github.com/lasr-lab/touch-improves-grasping/tree/main" class="btn enabled">Code</a>
+                <a href="https://huggingface.co/datasets/LASR-Niklas/Touch-Improves-Learning"
+                    class="btn enabled">Dataset</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Abstract -->
+            <section>
+                <h2>Abstract</h2>
+                <div class="abstract">
+                    Robotic dexterous grasping with human-level performance remains an unsolved challenge. Imitation
+                    Learning (IL) offers a compelling paradigm, yet vision-only approaches are brittle under lighting
+                    changes and novel objects. Touch sensing addresses this gap by grounding manipulation in contact
+                    properties rather than visual appearance. We present a systematic study of touch sensing in
+                    dexterous, multi-fingered IL, evaluating three algorithms (ACT, Flow Matching, BESO) across
+                    transformer, Mamba, and xLSTM backbones, and three tactile representations (Vision-only, end-to-end
+                    CNN, pretrained Sparsh-X). Using VR teleoperation with a Digit 360-equipped robotic hand, we collect
+                    demonstrations and evaluate generalization to novel objects and robustness to lighting
+                    perturbations. We train 21 policy variants (7 algorithms-backbone combinations × 3 tactile
+                    representations) and evaluate each on the training and test objects, yielding 28 comparison pairs.
+                    In 25 of 28, tactile signals match or improve upon vision-only performance, with the largest gains
+                    on unseen objects and degraded lighting. Failure analysis reveals that touch primarily improves
+                    initial grasp alignment, reducing misplaced approaches. Notably, end-to-end CNN encoders degrade
+                    diffusion-based policies by corrupting visual subtasks, while pretrained encoders avoid this. These
+                    results provide practical guidance on learning algorithm, backbone, and tactile representation
+                    choices for imitation learning of dexterous grasping.
+                </div>
+            </section>
+
+            <!-- Video -->
+            <section>
+                <h2>Overview Video</h2>
+                <div class="video-container">
+                    <video controls poster="images/teaser.png">
+                        <source src="video/touch_improves_learning_dexterous_grasping_from_demonstration.mp4"
+                            type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+            <!-- Method Overview -->
+            <section>
+                <h2>Method Overview</h2>
+                <p style="text-align: justify; margin-bottom: 20px;">
+                    We present a systematic study evaluating multiple state-of-the-art imitation learning algorithms,
+                    backbone architectures, and tactile representations for dexterous grasping. Our approach uses VR
+                    teleoperation with a Digit 360-equipped multi-finger hand to collect demonstrations, then trains
+                    policies under identical conditions to isolate the contribution of tactile sensing from
+                    architectural choices. We evaluate three algorithms (ACT, Flow Matching, BESO) across three
+                    backbones (Transformer, Mamba, xLSTM) with three tactile representations (Vision-only, end-to-end
+                    CNN, pretrained Sparsh-X), yielding 21 policy variants tested across 28 comparison pairs.
+                </p>
+                <div class="figure">
+                    <img src="images/method.png" alt="Method Overview">
+                    <div class="caption">
+                        <strong>System Overview:</strong> We study tactile sensing for dexterous grasping via systematic
+                        comparison of IL algorithms, backbones, and tactile representations. The VR teleoperation setup
+                        features the Digit 360-equipped multi-finger hand grasping an object, with a close-up of the
+                        tactile sensor reading. Across 28 evaluation configurations, touch matches or improves
+                        vision-only performance in 25 cases.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Objects and Hardware side by side -->
+            <section>
+                <p style="text-align: justify; margin-bottom: 20px;">
+                    <strong>Hardware Platform and Data Collection:</strong> We develop a VR-based teleoperation system
+                    using the Meta Quest 3 to track human operator movements, collecting 180 demonstrations at 30 Hz
+                    with the xArm-7 robot arm mounting a Tilburg hand equipped with four Digit 360 tactile sensors. The
+                    dataset consists of two training objects (marked in purple) made of firm plastic, with ten grasps in
+                    nine different positions each. <strong>Object Set:</strong> We evaluate on 16 objects total — 2
+                    training objects and 14 everyday household test objects made of different materials, testing
+                    generalization beyond the training distribution.
+                </p>
+                <div class="results-grid side-by-side">
+                    <div class="results-item">
+                        <div class="figure">
+                            <img src="images/hardwareSetup.png" alt="Hardware Setup">
+                            <div class="caption">
+                                <strong>Teleoperation Setup:</strong> VR teleoperation system with Digit 360 tactile
+                                sensors for collecting dexterous grasping demonstrations.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-item">
+                        <div class="figure">
+                            <img src="images/objects.png" alt="Objects used in the study">
+                            <div class="caption">
+                                <strong>Object Set:</strong> 16 objects used in the study, including 2 training objects
+                                and 14 test objects for evaluating generalization.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results -->
+            <section>
+                <h2>Results</h2>
+                <p style="text-align: justify; margin-bottom: 20px;">
+                    We evaluate all 21 policy variants on both training and test objects, with each policy performing
+                    144 grasps (16 objects × 9 positions). Our key finding: tactile signals match or improve upon
+                    vision-only performance in <strong>25 out of 28 cases</strong>, with the benefit becoming more
+                    pronounced when generalizing to novel objects. The performance gap between training and test objects
+                    narrows when tactile signals are included, suggesting that contact-grounded observations provide
+                    appearance-invariant information that supports generalization beyond the demonstrated object set.
+                </p>
+
+                <div class="full-width-figure">
+                    <div class="figure">
+                        <img src="images/graspingPerformance.png" alt="Grasping Performance">
+                        <div class="caption">
+                            <strong>Grasping Performance:</strong> Performance comparison across different algorithms,
+                            backbones, and tactile representations on training objects.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="full-width-figure">
+                    <div class="figure">
+                        <img src="images/graspingPerformanceNovel.png" alt="Generalization to Novel Objects">
+                        <div class="caption">
+                            <strong>Generalization to Novel Objects:</strong> Touch sensing provides the largest gains
+                            when generalizing to unseen objects.
+                        </div>
+                    </div>
+                </div>
+
+                <p style="text-align: justify; margin: 30px 0 20px;">
+                    <strong>Tactile Representation Comparison:</strong> While the performance is more similar on
+                    training objects with a 6% difference [≈83.14% Vision-only, ≈89.57% Tactile (CNN), ≈88.86% Tactile
+                    (Sparsh-X)], this gap grows to an 11% higher success rate when facing test objects [≈40.14%
+                    Vision-only, ≈50.14% Tactile (CNN), ≈51.14% Tactile (Sparsh-X)]. The CNN and Sparsh-X
+                    representations perform within 1% of each other on average, indicating that for this grasping task,
+                    both task-specific learned features and pretrained embeddings capture comparable contact
+                    information.
+                </p>
+
+                <p style="text-align: justify; margin-bottom: 30px;">
+                    <strong>Algorithm and Backbone Analysis:</strong> We observe that xLSTM achieves a 7% and 10% higher
+                    success rate when compared to Mamba and Transformer using Flow Matching respectively, yet it
+                    performs 5% and 4% worse for the BESO algorithm. No single backbone emerges as universally
+                    advantageous across both learning algorithms, highlighting the importance of algorithm-backbone
+                    interaction.
+                </p>
+
+                <div class="results-grid">
+                    <div class="results-item">
+                        <div class="figure">
+                            <img src="images/tactilePerformance.png" alt="Tactile Representation Comparison">
+                            <div class="caption">
+                                <strong>Tactile Representation Comparison:</strong> Comparing vision-only, end-to-end
+                                CNN, and pretrained Sparsh-X tactile representations.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-item">
+                        <div class="figure">
+                            <img src="images/backbonePerformance.png" alt="Backbone Comparison">
+                            <div class="caption">
+                                <strong>Backbone Comparison:</strong> Mean performance across training and test objects
+                                for Transformer, Mamba, and xLSTM backbones.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="text-align: justify; margin: 30px 0 20px;">
+                    <strong>Environmental Robustness:</strong> We evaluate four lighting conditions: baseline, dimmed
+                    with purple side light, purple-only color perturbation, and fully darkened room. Average grasping
+                    performance decreases across all policies as lighting conditions worsen, confirming the expected
+                    sensitivity of vision-based control to appearance shifts. However, the Sparsh-X encoded tactile
+                    representation degrades considerably less than the other two, demonstrating that pretrained contact
+                    representations provide meaningful robustness when visual information becomes unreliable.
+                </p>
+
+                <p style="text-align: justify; margin-bottom: 30px;">
+                    <strong>Failure Mode Analysis:</strong> The failure analysis reveals that the benefit of touch is
+                    not uniformly distributed across the grasping sequence. The largest improvement occurs at the
+                    initial approach stage: tactile variants reduce Misplaced grasp attempts from ≈44.3 to ≈23.3 (CNN)
+                    and ≈31.9 (Sparsh-X) compared to vision-only baselines. Once the robot establishes contact,
+                    differences between tactile and vision-only variants diminish to within one failure case across
+                    Failed lift and Dropping. This indicates that touch primarily provides the contact-geometry signal
+                    needed to approach the object with a viable grasp configuration, rather than aiding in-hand
+                    stabilization.
+                </p>
+
+                <div class="results-grid">
+                    <div class="results-item">
+                        <div class="figure">
+                            <img src="images/lightingPerformance.png" alt="Robustness to Lighting Changes">
+                            <div class="caption">
+                                <strong>Robustness to Lighting Changes:</strong> Touch sensing significantly improves
+                                robustness under degraded lighting conditions, with pretrained Sparsh-X showing the most
+                                stable performance.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-item">
+                        <div class="figure">
+                            <img src="images/failure_candle.png" alt="Failure Case Analysis">
+                            <div class="caption">
+                                <strong>Failure Case Analysis:</strong> Mean accumulated failure occurrences across 1008
+                                grasping attempts. Most failures occur due to hand misplacement, which is significantly
+                                reduced when using tactile signals (both CNN and Sparsh-X).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Acknowledgements -->
+            <section>
+                <h2>Acknowledgements</h2>
+                <p style="text-align: justify;">
+                    This work was partly supported by the project Genius-Robot (01IS24083) funded by the Federal
+                    Ministry of Research, Technology and Space (BMFTR), by BMFTR in the DAAD project 57616814 (SECAI,
+                    School of Embedded Composite AI), by BMFTR under the Robotics Institute Germany (RIG), by the German
+                    Research Foundation (DFG) under the Cluster of Excellence CARE: Climate-Neutral And
+                    Resource-Efficient Construction (EXC 3115, project number 533767731) and by the Deutsche
+                    Forschungsgemeinschaft (DFG, German Research Foundation) (448648559). The authors gratefully
+                    acknowledge the computing time provided on the high-performance computer HoreKa by the National
+                    High-Performance Computing Center at KIT and by Gauss Centre for Supercomputing e.V.
+                    (www.gauss-centre.eu) for GCS Supercomputer JUPITER at Jülich Supercomputing Centre (JSC). We
+                    furthermore thank the ZIH at TU Dresden for providing computing resources. We acknowledge the use of
+                    Claude Opus and Qwen 3.7 to support code development. The outputs were used in Section V to generate
+                    supportive scripts. All outputs were validated by the authors of this paper.
+                </p>
+            </section>
+
+            <!-- CRediT -->
+            <section>
+                <h2>Author Contributions (CRediT)</h2>
+                <p style="text-align: justify;">
+                    <strong>Conceptualization:</strong> NL, PV, KN, RC; <strong>Data curation:</strong> NL;
+                    <strong>Formal Analysis:</strong> NL, PV; <strong>Funding acquisition:</strong> RL, RC;
+                    <strong>Investigation:</strong> NL, PV; <strong>Methodology:</strong> NL, PV, JS; <strong>Project
+                        administration:</strong> RL, RC; <strong>Resources:</strong> RL, RC; <strong>Software:</strong>
+                    NL, PV, JS; <strong>Supervision:</strong> KN, RL, RC; <strong>Validation:</strong> NL, PV, JS;
+                    <strong>Visualization:</strong> NL; <strong>Writing – original draft:</strong> NL, PV, JS;
+                    <strong>Writing – review & editing:</strong> NL, PV, JS, RL, RC
+                </p>
+            </section>
+
+            <!-- Citation -->
+            <section>
+                <h2>Citation</h2>
+                <div class="bibtex">@article{leukroth2026touch,
+                    title={Touch Improves Learning Dexterous Grasping from Demonstration},
+                    author={Leukroth, Niklas and Vanjani, Pankhuri and Suliga, Jakub and Nakahara, Ken and Lioutikov,
+                    Rudolf and Calandra, Roberto},
+                    journal={arXiv preprint},
+                    year={2026}
+                    }</div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Niklas Leukroth, Pankhuri Vanjani, et al. | Website template inspired by standard academic
+                project pages</p>
+        </div>
+    </footer>
+</body>
+
+</html>
